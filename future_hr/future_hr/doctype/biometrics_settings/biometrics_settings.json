@@ -1,0 +1,264 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-11-04 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "enabled",
+  "connection_details_section",
+  "server",
+  "port",
+  "column_break_creds",
+  "db_user",
+  "db_password",
+  "query_settings_section",
+  "database_table",
+  "employee_code_field",
+  "column_break_query",
+  "log_datetime_field",
+  "device_name_field",
+  "sync_buffer_minutes",
+  "min_punch_gap_mins",
+  "manual_pull_section",
+  "manual_from_datetime",
+  "manual_to_datetime",
+  "column_break_manual",
+  "manual_employee",
+  "btn_manual_fetch",
+  "timeout_settings_section",
+  "login_timeout",
+  "column_break_timeout",
+  "query_timeout",
+  "sync_info_section",
+  "last_sync_time",
+  "last_synced_log_datetime",
+  "column_break_sync_info",
+  "last_sync_status",
+  "last_sync_message"
+ ],
+ "fields": [
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enable Biometrics Sync",
+   "bold": 1,
+   "description": "Turn on/off the scheduled biometrics attendance sync"
+  },
+  {
+   "fieldname": "connection_details_section",
+   "fieldtype": "Section Break",
+   "label": "Connection Details"
+  },
+  {
+   "fieldname": "server",
+   "fieldtype": "Data",
+   "label": "Server IP / Hostname",
+   "reqd": 1,
+   "description": "IP address or hostname of the MSSQL biometrics server"
+  },
+  {
+   "default": "1433",
+   "fieldname": "port",
+   "fieldtype": "Int",
+   "label": "Port",
+   "reqd": 1,
+   "non_negative": 1
+  },
+  {
+   "fieldname": "column_break_creds",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "db_user",
+   "fieldtype": "Data",
+   "label": "Database User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "db_password",
+   "fieldtype": "Password",
+   "label": "Database Password",
+   "reqd": 1
+  },
+  {
+   "fieldname": "query_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Query Settings",
+   "collapsible": 1
+  },
+  {
+   "default": "dbo.EssLData",
+   "fieldname": "database_table",
+   "fieldtype": "Data",
+   "label": "Database Table",
+   "reqd": 1,
+   "description": "Fully qualified table name (e.g., dbo.EssLData)"
+  },
+  {
+   "default": "EmployeeCode",
+   "fieldname": "employee_code_field",
+   "fieldtype": "Data",
+   "label": "Employee Code Column",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_query",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "LogDateTime",
+   "fieldname": "log_datetime_field",
+   "fieldtype": "Data",
+   "label": "Log DateTime Column",
+   "reqd": 1
+  },
+  {
+   "default": "DeviceName",
+   "fieldname": "device_name_field",
+   "fieldtype": "Data",
+   "label": "Device Name Column",
+   "reqd": 1
+  },
+  {
+   "default": "60",
+   "fieldname": "sync_buffer_minutes",
+   "fieldtype": "Int",
+   "label": "Lookback Buffer (Minutes)",
+   "description": "Overlap window in minutes to ensure delayed device logs are not missed"
+  },
+  {
+   "default": "60",
+   "fieldname": "min_punch_gap_mins",
+   "fieldtype": "Int",
+   "label": "Minimum Gap Between IN & OUT (Minutes)",
+   "description": "Punches occurring less than this gap after Punch In will not be treated as Punch Out (Default: 60 mins)"
+  },
+  {
+   "fieldname": "manual_pull_section",
+   "fieldtype": "Section Break",
+   "label": "Manual Pull Records",
+   "description": "Fetch punches for a custom date & time range (Max 31 days) and optional employee"
+  },
+  {
+   "fieldname": "manual_from_datetime",
+   "fieldtype": "Datetime",
+   "label": "From Date & Time"
+  },
+  {
+   "fieldname": "manual_to_datetime",
+   "fieldtype": "Datetime",
+   "label": "To Date & Time"
+  },
+  {
+   "fieldname": "column_break_manual",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "manual_employee",
+   "fieldtype": "Link",
+   "label": "Employee (Optional)",
+   "options": "Employee",
+   "description": "Leave blank to pull records for all employees"
+  },
+  {
+   "fieldname": "btn_manual_fetch",
+   "fieldtype": "Button",
+   "label": "Fetch Records"
+  },
+  {
+   "fieldname": "timeout_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Timeout Settings",
+   "collapsible": 1
+  },
+  {
+   "default": "30",
+   "fieldname": "login_timeout",
+   "fieldtype": "Int",
+   "label": "Login Timeout (seconds)",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "column_break_timeout",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "60",
+   "fieldname": "query_timeout",
+   "fieldtype": "Int",
+   "label": "Query Timeout (seconds)",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "sync_info_section",
+   "fieldtype": "Section Break",
+   "label": "Last Sync Info"
+  },
+  {
+   "fieldname": "last_sync_time",
+   "fieldtype": "Datetime",
+   "label": "Last Sync Executed At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_synced_log_datetime",
+   "fieldtype": "Datetime",
+   "label": "Latest Biometric Log Timestamp",
+   "read_only": 1,
+   "description": "Timestamp of the most recent biometric punch recorded"
+  },
+  {
+   "fieldname": "column_break_sync_info",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "last_sync_status",
+   "fieldtype": "Select",
+   "label": "Last Sync Status",
+   "options": "\nSuccess\nFailed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_sync_message",
+   "fieldtype": "Small Text",
+   "label": "Last Sync Message",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-11-04 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Future HR",
+ "name": "Biometrics Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "HR Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

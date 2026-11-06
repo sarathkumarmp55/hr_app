@@ -1,0 +1,164 @@
+{
+ "actions": [],
+ "autoname": "format:BIO-LOG-{####}",
+ "creation": "2026-11-04 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "sync_time",
+  "status",
+  "column_break_info",
+  "sync_type",
+  "duration_seconds",
+  "counts_section",
+  "total_logs_fetched",
+  "imported",
+  "column_break_counts",
+  "skipped",
+  "unmapped_count",
+  "details_section",
+  "message",
+  "unmapped_device_ids",
+  "error_section",
+  "error_traceback"
+ ],
+ "fields": [
+  {
+   "fieldname": "sync_time",
+   "fieldtype": "Datetime",
+   "label": "Sync Time",
+   "in_list_view": 1,
+   "read_only": 1,
+   "bold": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Success\nFailed",
+   "in_list_view": 1,
+   "read_only": 1,
+   "bold": 1
+  },
+  {
+   "fieldname": "column_break_info",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "sync_type",
+   "fieldtype": "Select",
+   "label": "Sync Type",
+   "options": "Scheduled\nManual",
+   "in_list_view": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "duration_seconds",
+   "fieldtype": "Float",
+   "label": "Duration (seconds)",
+   "read_only": 1,
+   "precision": "2"
+  },
+  {
+   "fieldname": "counts_section",
+   "fieldtype": "Section Break",
+   "label": "Sync Counts"
+  },
+  {
+   "fieldname": "total_logs_fetched",
+   "fieldtype": "Int",
+   "label": "Total Logs Fetched",
+   "in_list_view": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "imported",
+   "fieldtype": "Int",
+   "label": "Imported",
+   "in_list_view": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_counts",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "skipped",
+   "fieldtype": "Int",
+   "label": "Skipped",
+   "read_only": 1
+  },
+  {
+   "fieldname": "unmapped_count",
+   "fieldtype": "Int",
+   "label": "Unmapped Employees",
+   "read_only": 1
+  },
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Details",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "message",
+   "fieldtype": "Small Text",
+   "label": "Message",
+   "read_only": 1
+  },
+  {
+   "fieldname": "unmapped_device_ids",
+   "fieldtype": "Small Text",
+   "label": "Unmapped Device IDs",
+   "read_only": 1,
+   "description": "Employee codes from biometrics device that don't match any Employee's Attendance Device ID"
+  },
+  {
+   "fieldname": "error_section",
+   "fieldtype": "Section Break",
+   "label": "Error Details",
+   "collapsible": 1,
+   "depends_on": "eval:doc.status=='Failed'"
+  },
+  {
+   "fieldname": "error_traceback",
+   "fieldtype": "Code",
+   "label": "Error Traceback",
+   "read_only": 1,
+   "options": "Python"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "in_create": 1,
+ "is_submittable": 0,
+ "links": [],
+ "modified": "2026-11-04 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Future HR",
+ "name": "Biometrics Sync Log",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "HR Manager",
+   "share": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "sync_time",
+ "show_title_field_in_link": 1,
+ "track_changes": 0
+}
+

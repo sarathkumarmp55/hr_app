@@ -154,13 +154,12 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"Employee Checkin": {
+		"on_update": "future_hr.events.employee_checkin.on_employee_checkin_update",
+		"on_trash": "future_hr.events.employee_checkin.on_employee_checkin_trash",
+	}
+}
 
 # Scheduled Tasks
 # ---------------
@@ -264,3 +263,10 @@ app_license = "mit"
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
+scheduler_events = {
+    "cron": {
+        "* * * * *": [
+            "future_hr.events.employee_checkin.sync_attendance_logs"
+        ]
+    }
+}
