@@ -22,6 +22,12 @@ def _get_settings():
     return settings
 
 
+def _to_mssql_dt_str(dt_val):
+    """Format a datetime/string as ODBC canonical 'YYYY-MM-DD HH:MM:SS.mmm' for MSSQL CONVERT(..., 121)."""
+    dt = get_datetime(dt_val)
+    return f"{dt.strftime('%Y-%m-%d %H:%M:%S')}.{dt.microsecond // 1000:03d}"
+
+
 def _get_mssql_connection(settings):
     """Open and return an MSSQL connection using settings."""
     import pymssql
@@ -222,11 +228,12 @@ def sync_attendance_logs(sync_type="Scheduled"):
         cursor = conn.cursor(as_dict=True)
 
         if watermark:
+            watermark_str = _to_mssql_dt_str(watermark)
             cursor.execute(
                 f"SELECT DISTINCT [{emp_col}] AS EmployeeCode, [{dt_col}] AS LogDateTime, "
                 f"[{dev_col}] AS DeviceName FROM {table} "
-                f"WHERE [{dt_col}] > %s ORDER BY [{dt_col}] ASC",
-                (watermark,)
+                f"WHERE [{dt_col}] > CONVERT(DATETIME, %s, 121) ORDER BY [{dt_col}] ASC",
+                (watermark_str,)
             )
         else:
             cursor.execute(
@@ -416,6 +423,9 @@ def pull_manual_attendance_logs(from_datetime, to_datetime, employee=None):
         conn = _get_mssql_connection(settings)
         cursor = conn.cursor(as_dict=True)
 
+        from_dt_str = _to_mssql_dt_str(from_dt)
+        to_dt_str = _to_mssql_dt_str(to_dt)
+
         target_codes = set()
         if employee:
             emp_data = frappe.db.get_value(
@@ -438,19 +448,22 @@ def pull_manual_attendance_logs(from_datetime, to_datetime, employee=None):
             query = (
                 f"SELECT DISTINCT [{emp_col}] AS EmployeeCode, [{dt_col}] AS LogDateTime, "
                 f"[{dev_col}] AS DeviceName FROM {table} "
-                f"WHERE [{dt_col}] >= %s AND [{dt_col}] <= %s AND [{emp_col}] IN ({placeholders}) "
+                f"WHERE [{dt_col}] >= CONVERT(DATETIME, %s, 121) "
+                f"AND [{dt_col}] <= CONVERT(DATETIME, %s, 121) "
+                f"AND [{emp_col}] IN ({placeholders}) "
                 f"ORDER BY [{dt_col}] ASC"
             )
-            params = [from_dt, to_dt] + list(target_codes)
+            params = [from_dt_str, to_dt_str] + list(target_codes)
             cursor.execute(query, tuple(params))
         else:
             query = (
                 f"SELECT DISTINCT [{emp_col}] AS EmployeeCode, [{dt_col}] AS LogDateTime, "
                 f"[{dev_col}] AS DeviceName FROM {table} "
-                f"WHERE [{dt_col}] >= %s AND [{dt_col}] <= %s "
+                f"WHERE [{dt_col}] >= CONVERT(DATETIME, %s, 121) "
+                f"AND [{dt_col}] <= CONVERT(DATETIME, %s, 121) "
                 f"ORDER BY [{dt_col}] ASC"
             )
-            cursor.execute(query, (from_dt, to_dt))
+            cursor.execute(query, (from_dt_str, to_dt_str))
 
         logs = cursor.fetchall()
         cursor.close()

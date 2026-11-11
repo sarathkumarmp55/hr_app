@@ -122,10 +122,9 @@
   },
   {
    "fieldname": "error_traceback",
-   "fieldtype": "Code",
+   "fieldtype": "Long Text",
    "label": "Error Traceback",
-   "read_only": 1,
-   "options": "Python"
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 0,
