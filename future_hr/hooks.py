@@ -265,7 +265,7 @@ doc_events = {
 
 scheduler_events = {
     "cron": {
-        "* * * * *": [
+        "*/15 * * * *": [
             "future_hr.events.employee_checkin.sync_attendance_logs"
         ]
     }
