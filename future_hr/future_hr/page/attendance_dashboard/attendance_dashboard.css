@@ -1,0 +1,507 @@
+/* Attendance Dashboard Styling */
+
+.attendance-dashboard-wrapper {
+	padding: 15px 20px 40px 20px;
+	background: var(--bg-color, #f8f9fa);
+	min-height: calc(100vh - 120px);
+	font-family: inherit;
+}
+
+/* Metric Cards */
+.att-metrics-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+	gap: 16px;
+	margin-bottom: 20px;
+}
+
+.att-metric-card {
+	background: var(--card-bg, #ffffff);
+	border: 1px solid var(--border-color, #e5e7eb);
+	border-radius: 12px;
+	padding: 16px 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.att-metric-card:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.att-metric-info {
+	display: flex;
+	flex-direction: column;
+}
+
+.att-metric-title {
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--text-muted, #6b7280);
+	margin-bottom: 4px;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.att-metric-value {
+	font-size: 28px;
+	font-weight: 700;
+	color: var(--text-color, #111827);
+	line-height: 1.1;
+}
+
+.att-metric-icon {
+	width: 44px;
+	height: 44px;
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 20px;
+}
+
+.att-metric-card.total .att-metric-icon {
+	background: #eef2ff;
+	color: #4f46e5;
+}
+
+.att-metric-card.in .att-metric-icon {
+	background: #ecfdf5;
+	color: #059669;
+}
+
+.att-metric-card.out .att-metric-icon {
+	background: #fef2f2;
+	color: #dc2626;
+}
+
+.att-metric-card.absent .att-metric-icon {
+	background: #f3f4f6;
+	color: #6b7280;
+}
+
+/* Control Toolbar */
+.att-toolbar {
+	background: var(--card-bg, #ffffff);
+	border: 1px solid var(--border-color, #e5e7eb);
+	border-radius: 12px;
+	padding: 14px 18px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 14px;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 20px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.att-toolbar-left {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 12px;
+	flex: 1;
+	min-width: 280px;
+}
+
+.att-toolbar-right {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+/* Search Box */
+.att-search-box {
+	position: relative;
+	min-width: 240px;
+	flex: 1;
+	max-width: 380px;
+}
+
+.att-search-box input {
+	width: 100%;
+	height: 38px;
+	padding: 8px 12px 8px 34px;
+	border: 1px solid var(--border-color, #d1d5db);
+	border-radius: 8px;
+	font-size: 13px;
+	background: var(--control-bg, #ffffff);
+	color: var(--text-color, #1f2937);
+	outline: none;
+	transition: border-color 0.15s ease;
+}
+
+.att-search-box input:focus {
+	border-color: var(--primary-color, #2563eb);
+	box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+.att-search-icon {
+	position: absolute;
+	left: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #9ca3af;
+	pointer-events: none;
+	font-size: 14px;
+}
+
+/* Filter Buttons */
+.att-filter-group {
+	display: flex;
+	background: var(--bg-color, #f3f4f6);
+	padding: 3px;
+	border-radius: 8px;
+	gap: 2px;
+}
+
+.att-filter-btn {
+	border: none;
+	background: transparent;
+	padding: 6px 12px;
+	border-radius: 6px;
+	font-size: 12.5px;
+	font-weight: 500;
+	color: var(--text-muted, #4b5563);
+	cursor: pointer;
+	transition: all 0.15s ease;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.att-filter-btn:hover {
+	color: var(--text-color, #111827);
+}
+
+.att-filter-btn.active {
+	background: var(--card-bg, #ffffff);
+	color: var(--primary-color, #2563eb);
+	font-weight: 600;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.att-filter-count {
+	font-size: 11px;
+	padding: 1px 6px;
+	border-radius: 10px;
+	background: #e5e7eb;
+	color: #374151;
+}
+
+.att-filter-btn.active .att-filter-count {
+	background: #dbeafe;
+	color: #1e40af;
+}
+
+/* Live Auto-Refresh Badge */
+.att-live-status {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 12px;
+	color: var(--text-muted, #6b7280);
+	padding: 6px 10px;
+	background: var(--bg-color, #f9fafb);
+	border: 1px solid var(--border-color, #e5e7eb);
+	border-radius: 6px;
+}
+
+.att-pulse-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: #10b981;
+	box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+	animation: pulse-ring 1.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+}
+
+@keyframes pulse-ring {
+	0% {
+		box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+	}
+	70% {
+		box-shadow: 0 0 0 7px rgba(16, 185, 129, 0);
+	}
+	100% {
+		box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+	}
+}
+
+/* Date input */
+.att-date-picker {
+	height: 38px;
+	padding: 6px 12px;
+	border: 1px solid var(--border-color, #d1d5db);
+	border-radius: 8px;
+	font-size: 13px;
+	background: var(--control-bg, #ffffff);
+	color: var(--text-color, #1f2937);
+	outline: none;
+}
+
+/* Table Container */
+.att-table-card {
+	background: var(--card-bg, #ffffff);
+	border: 1px solid var(--border-color, #e5e7eb);
+	border-radius: 12px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+	overflow: hidden;
+}
+
+.att-table-responsive {
+	overflow-x: auto;
+}
+
+.att-table {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: left;
+	font-size: 13.5px;
+}
+
+.att-table th {
+	background: var(--table-header-bg, #f9fafb);
+	padding: 12px 18px;
+	font-size: 12px;
+	font-weight: 600;
+	color: var(--text-muted, #4b5563);
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	border-bottom: 1px solid var(--border-color, #e5e7eb);
+}
+
+.att-table td {
+	padding: 14px 18px;
+	border-bottom: 1px solid var(--border-color, #f3f4f6);
+	vertical-align: middle;
+	color: var(--text-color, #1f2937);
+}
+
+.att-table tr:hover td {
+	background: var(--row-hover-bg, #f9fafb);
+}
+
+/* Employee Column */
+.att-emp-cell {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.att-avatar {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	object-fit: cover;
+	background: #e5e7eb;
+}
+
+.att-avatar-initials {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: #e0e7ff;
+	color: #3730a3;
+	font-weight: 600;
+	font-size: 14px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-transform: uppercase;
+}
+
+.att-emp-details {
+	display: flex;
+	flex-direction: column;
+}
+
+.att-emp-name {
+	font-weight: 600;
+	color: var(--text-color, #111827);
+	text-decoration: none;
+}
+
+.att-emp-name:hover {
+	color: var(--primary-color, #2563eb);
+}
+
+.att-emp-id {
+	font-size: 12px;
+	color: var(--text-muted, #6b7280);
+	font-family: monospace;
+}
+
+/* Designation Column */
+.att-desig-title {
+	font-weight: 500;
+	color: var(--text-color, #374151);
+}
+
+.att-desig-dept {
+	font-size: 12px;
+	color: var(--text-muted, #9ca3af);
+}
+
+/* ========================================= */
+/* ARROW INDICATORS & BLINKING ANIMATIONS    */
+/* ========================================= */
+
+.arrow-box {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 6px 12px;
+	border-radius: 20px;
+	font-size: 12.5px;
+	font-weight: 600;
+	min-width: 110px;
+	justify-content: center;
+	transition: all 0.2s ease;
+}
+
+.arrow-symbol {
+	font-size: 15px;
+	line-height: 1;
+	display: inline-block;
+}
+
+/* 1. IN Arrow Blinking (Active In-Office state) */
+.arrow-in-blinking {
+	background: #ecfdf5;
+	border: 1.5px solid #10b981;
+	color: #047857;
+	box-shadow: 0 0 6px rgba(16, 185, 129, 0.35);
+}
+
+.arrow-in-blinking .arrow-symbol {
+	animation: blink-in-arrow 1.1s ease-in-out infinite;
+	color: #059669;
+}
+
+@keyframes blink-in-arrow {
+	0%, 100% {
+		opacity: 1;
+		transform: translateY(0) scale(1.15);
+		filter: drop-shadow(0 0 4px #10b981);
+	}
+	50% {
+		opacity: 0.25;
+		transform: translateY(2px) scale(0.9);
+		filter: drop-shadow(0 0 0px transparent);
+	}
+}
+
+/* 2. IN Arrow Solid (Checked In, but now Checked Out) */
+.arrow-in-solid {
+	background: #f0fdf4;
+	border: 1px solid #bbf7d0;
+	color: #15803d;
+}
+
+.arrow-in-solid .arrow-symbol {
+	color: #16a34a;
+}
+
+/* 3. OUT Arrow Blinking (Employee has checked out) */
+.arrow-out-blinking {
+	background: #fef2f2;
+	border: 1.5px solid #ef4444;
+	color: #b91c1c;
+	box-shadow: 0 0 6px rgba(239, 68, 68, 0.35);
+}
+
+.arrow-out-blinking .arrow-symbol {
+	animation: blink-out-arrow 1.1s ease-in-out infinite;
+	color: #dc2626;
+}
+
+@keyframes blink-out-arrow {
+	0%, 100% {
+		opacity: 1;
+		transform: translateY(0) scale(1.15);
+		filter: drop-shadow(0 0 4px #ef4444);
+	}
+	50% {
+		opacity: 0.25;
+		transform: translateY(-2px) scale(0.9);
+		filter: drop-shadow(0 0 0px transparent);
+	}
+}
+
+/* 4. Inactive Arrow (Greyed out / No record) */
+.arrow-inactive {
+	background: #f9fafb;
+	border: 1px dashed #d1d5db;
+	color: #9ca3af;
+}
+
+.arrow-inactive .arrow-symbol {
+	color: #d1d5db;
+}
+
+/* Status Pill */
+.att-status-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 4px 10px;
+	border-radius: 12px;
+	font-size: 12px;
+	font-weight: 500;
+}
+
+.att-status-badge.status-in {
+	background: #d1fae5;
+	color: #065f46;
+}
+
+.att-status-badge.status-in::before {
+	content: "";
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: #059669;
+}
+
+.att-status-badge.status-out {
+	background: #fee2e2;
+	color: #991b1b;
+}
+
+.att-status-badge.status-out::before {
+	content: "";
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: #dc2626;
+}
+
+.att-status-badge.status-absent {
+	background: #f3f4f6;
+	color: #4b5563;
+}
+
+.att-status-badge.status-absent::before {
+	content: "";
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: #9ca3af;
+}
+
+/* Empty State */
+.att-empty-state {
+	padding: 50px 20px;
+	text-align: center;
+	color: #6b7280;
+}
+
+.att-empty-icon {
+	font-size: 38px;
+	margin-bottom: 10px;
+	color: #9ca3af;
+}
