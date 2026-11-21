@@ -58,6 +58,31 @@
 	line-height: 1.1;
 	color: var(--text-color, #0f172a);
 	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.att-metric-value.text-sm {
+	font-size: 19px;
+	letter-spacing: -0.01em;
+}
+
+.att-personal-tag {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 13px;
+	color: var(--text-color, #1e293b);
+	background: var(--bg-color, #f1f5f9);
+	padding: 7px 14px;
+	border-radius: 8px;
+	border: 1px solid var(--border-color, #e2e8f0);
+}
+
+.att-personal-tag svg {
+	color: var(--text-muted, #64748b);
+	flex-shrink: 0;
 }
 
 .att-metric-icon-wrap {
